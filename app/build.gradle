@@ -1,5 +1,6 @@
 //noinspection GradleCompatible
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 22
@@ -18,7 +19,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin/'
+        test.java.srcDirs += 'src/test/kotlin/'
+    }
 }
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -28,6 +35,7 @@ dependencies {
     compile 'com.google.guava:guava:20.0'
     compile 'com.squareup.dagger:dagger:1.2.5'
     compile 'com.squareup.dagger:dagger-compiler:1.2.5'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     testCompile 'junit:junit:4.12'
     testCompile 'org.robolectric:robolectric:3.2.2'
 }
